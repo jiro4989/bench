@@ -4,6 +4,9 @@ on:
   issue_comment:
     types: [created]
 
+env:
+  IMAGE: jiro4989/bench:latest
+
 jobs:
 
   benchmark:
@@ -18,8 +21,8 @@ jobs:
           command: bench
 
       - run: |
-          docker build -t bench .
-          docker run -v $PWD:/work --rm bench bash -c 'cd /work && ./bench.sh'
+          docker pull ${{ env.IMAGE }}
+          docker run -v $PWD:/work --rm ${{ env.IMAGE }} bash -c 'cd /work && ./bench.sh'
         if: steps.command.outputs.command-name
 
       - name: Post multi-line comments
