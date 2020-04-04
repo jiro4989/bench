@@ -22,5 +22,5 @@ RUN sh init.sh -y \
 # Go
 ENV PATH /usr/local/go/bin:$PATH
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
-    sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+    tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
 
