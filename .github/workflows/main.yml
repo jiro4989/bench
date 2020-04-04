@@ -15,7 +15,7 @@ jobs:
         continue-on-error: true
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          command: bench
+          command: /bench
 
       - run: |
           ./bench.sh
