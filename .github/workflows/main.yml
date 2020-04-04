@@ -1,0 +1,38 @@
+name: benchmark
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: xt0rted/slash-command-action@v1.1.0
+        id: command
+        continue-on-error: true
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          command: bench
+
+      - run: |
+          ./bench.sh
+          echo ::set-output body=tag::$(find cases -name result.txt | xargs cat)
+        if: steps.command.outputs.bench
+
+      - name: Create comment
+        uses: jungwinter/comment@v1
+        id: create
+        with:
+          type: create
+          body: |
+            ```
+            ${{ steps.vars.outputs.body }}
+            ```
+          issue_number: '1'
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.command.outputs.bench
+
+      - run: echo "end"
