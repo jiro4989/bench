@@ -15,12 +15,12 @@ jobs:
         continue-on-error: true
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          command: /bench
+          command: bench
 
       - run: |
           ./bench.sh
           echo ::set-output body=tag::$(find cases -name result.txt | xargs cat)
-        if: steps.command.outputs.bench
+        if: steps.command.outputs.command-name
 
       - name: Create comment
         uses: jungwinter/comment@v1
@@ -33,6 +33,6 @@ jobs:
             ```
           issue_number: '1'
           token: ${{ secrets.GITHUB_TOKEN }}
-        if: steps.command.outputs.bench
+        if: steps.command.outputs.command-name
 
       - run: echo "end"
