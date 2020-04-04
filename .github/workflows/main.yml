@@ -20,18 +20,19 @@ jobs:
       - run: |
           docker build -t bench .
           docker run -v $PWD:/work --rm bench bash -c 'cd /work && ./bench.sh'
-          echo ::set-output body=tag::$(find cases -name result.txt | xargs cat)
         if: steps.command.outputs.command-name
 
-      - name: Create comment
-        uses: jungwinter/comment@v1
-        id: create
-        with:
-          type: create
-          body: |
-            ${{ steps.vars.outputs.body }}
-          issue_number: '1'
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Post multi-line comments
         if: steps.command.outputs.command-name
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: https://api.github.com/repos/jiro4989/bench/issues/1/comments
+        run: |
+          find cases -name result.json |
+            xargs cat |
+            curl -X POST \
+                 -H "Authorization: token ${GITHUB_TOKEN}" \
+                 -d @- \
+                 ${URL}
 
       - run: echo "end"
