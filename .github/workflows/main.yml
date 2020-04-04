@@ -28,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: https://api.github.com/repos/jiro4989/bench/issues/1/comments
         run: |
-          cat result.json |
+          find cases -name result.json |
             xargs cat |
             curl -X POST \
                  -H "Authorization: token ${GITHUB_TOKEN}" \

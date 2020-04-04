@@ -30,5 +30,6 @@ done
 E
   ./aggr.sh
 ) > result.txt
+./to_json.py result.txt
 
 echo "finish"
