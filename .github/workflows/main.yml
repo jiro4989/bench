@@ -29,9 +29,7 @@ jobs:
         with:
           type: create
           body: |
-            ```
             ${{ steps.vars.outputs.body }}
-            ```
           issue_number: '1'
           token: ${{ secrets.GITHUB_TOKEN }}
         if: steps.command.outputs.command-name
