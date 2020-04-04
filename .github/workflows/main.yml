@@ -29,7 +29,6 @@ jobs:
           URL: https://api.github.com/repos/jiro4989/bench/issues/1/comments
         run: |
           cat result.json |
-            xargs cat |
             curl -X POST \
                  -H "Authorization: token ${GITHUB_TOKEN}" \
                  -d @- \
