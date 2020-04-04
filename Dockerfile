@@ -7,6 +7,7 @@ RUN apt-get update -yqq && \
             build-essential \
             ca-certificates \
             git \
+            curl \
             wget \
             python3 \
             && \
