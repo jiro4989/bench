@@ -32,7 +32,12 @@ for i in {1..100}; do
 
 done
 
-./aggr.sh > result.txt
-./to_json.py result.txt
+(
+  cat << E
+## append string
+
+E
+  ./aggr.sh
+) > result.txt
 
 echo "finish"
