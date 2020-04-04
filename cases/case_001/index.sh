@@ -3,7 +3,6 @@
 set -eu
 
 go build -o main_go main.go
-go build -o main_go_2 main2.go
 
 choosenim 1.0.2
 nim c -d:release -o:main_nim_1.0.2 main.nim
@@ -21,7 +20,7 @@ for i in {1..100}; do
   echo "count: $i"
 
   # Go
-  (time ./main_go_2) 2> "result/go/$n"
+  (time ./main_go) 2> "result/go/$n"
 
   # Nim
   (time ./main_nim_1.0.2) 2> "result/nim_1.0.2/$n"
