@@ -18,7 +18,8 @@ jobs:
           command: bench
 
       - run: |
-          ./bench.sh
+          docker build -t bench .
+          docker run -v $PWD:/work --rm -it bench bash -c 'cd /work && ./bench.sh'
           echo ::set-output body=tag::$(find cases -name result.txt | xargs cat)
         if: steps.command.outputs.command-name
 
