@@ -10,6 +10,7 @@ RUN apt-get update -yqq && \
             curl \
             wget \
             python3 \
+            ruby-dev \
             && \
     rm -rf /var/lib/apt/lists/*
 
