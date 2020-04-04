@@ -16,8 +16,7 @@ RUN apt-get update -yqq && \
 # Nim
 ENV PATH /root/.nimble/bin:$PATH
 RUN curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
-RUN sh init.sh -y \
-    && choosenim 1.2.0
+RUN sh init.sh -y
 
 # Go
 ENV PATH /usr/local/go/bin:$PATH
