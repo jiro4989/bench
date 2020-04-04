@@ -22,6 +22,6 @@ You do below if you want to add new benchmarking cases.
 * Create a `cases/case_XXX` directory
 * Create a `cases/case_XXX/index.sh` script, and add exec permission
 
-    * `index.sh` must writes `result.txt`
+  * `index.sh` must writes `result.txt`
 
 Detail, see other benchmarking cases.
