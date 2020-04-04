@@ -33,5 +33,6 @@ for i in {1..100}; do
 done
 
 ./aggr.sh > result.txt
+./to_json.py result.txt
 
 echo "finish"
