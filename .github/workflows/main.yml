@@ -19,6 +19,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           command: bench
+          permission-level: read
 
       - run: |
           docker pull ${{ env.IMAGE }}
